@@ -4,11 +4,11 @@ import com.superdev.codeplexbilheteriasapi.dtos.EventoCriarDto;
 import com.superdev.codeplexbilheteriasapi.exception.RegraNegocio;
 import com.superdev.codeplexbilheteriasapi.models.Evento;
 import com.superdev.codeplexbilheteriasapi.repositories.EventoRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -25,7 +25,7 @@ public class EventoService {
         return evento;
     }
 
-    public Evento criar(EventoCriarDto dado) {
+    public Evento criar(@Valid EventoCriarDto dado) {
         var dataAtual = LocalDate.now();
 
         if (!dado.dataEvento().isAfter(dataAtual)) {
